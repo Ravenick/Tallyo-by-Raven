@@ -426,17 +426,17 @@ function Dashboard({
   const totalAllPeople = events.reduce((s, e) => s + eventTotal(e), 0);
 
   return (
-    <div className="safe-area relative min-h-screen overflow-hidden selection:bg-neon selection:text-neon-foreground">
+    <div className="safe-area relative min-h-screen overflow-x-clip selection:bg-neon selection:text-neon-foreground">
       <div className="halo pointer-events-none absolute -top-52 left-1/2 h-[720px] w-[720px] -translate-x-1/2" />
 
       {/* Top Header */}
-      <header className="relative mx-auto flex max-w-5xl items-center justify-between gap-3 px-4 py-4">
-        <Logo />
+      <header className="relative mx-auto flex max-w-5xl items-center justify-between gap-2 px-3 py-3 sm:gap-3 sm:px-4 sm:py-4">
+        <div className="min-w-0 shrink-0"><Logo /></div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
           {!installed && (
             <button
-              className={btnGhost}
+              className={btnGhost + " px-3 py-2.5 sm:px-4"}
               onClick={install}
               title="Install app for quick offline access"
             >
@@ -446,7 +446,7 @@ function Dashboard({
           )}
 
           <button
-            className={btnGhost}
+            className={btnGhost + " px-3 py-2.5 sm:px-4"}
             aria-label="Toggle theme"
             onClick={() => prefs.setTheme(prefs.theme === "dark" ? "light" : "dark")}
           >
@@ -466,14 +466,14 @@ function Dashboard({
       </header>
 
       {/* Main Grid */}
-      <main className="relative mx-auto grid max-w-5xl gap-6 px-4 pb-16 lg:grid-cols-[1.5fr_1fr]">
+      <main className="relative mx-auto grid min-w-0 max-w-5xl gap-4 px-3 pb-16 sm:gap-6 sm:px-4 lg:grid-cols-[1.5fr_1fr]">
         {/* Counter Section */}
-        <section className="rounded-3xl border bg-card/85 p-5 backdrop-blur-md sm:p-7 shadow-xl">
+        <section className="min-w-0 rounded-3xl border bg-card/85 p-4 backdrop-blur-md shadow-xl sm:p-7">
           {active ? (
             <div className="flex flex-col">
               {/* Event Name & Actions */}
-              <div className="flex items-start justify-between gap-3 border-b pb-4">
-                <div>
+              <div className="flex min-w-0 flex-col gap-3 border-b pb-4 sm:flex-row sm:items-start sm:justify-between">
+                <div className="min-w-0">
                   <div className="flex items-center gap-2">
                     <span className="rounded-full bg-neon/15 px-2.5 py-0.5 text-xs font-bold uppercase tracking-wider text-neon">
                       Active Event
@@ -486,7 +486,7 @@ function Dashboard({
                       <Pencil size={13} /> Edit
                     </button>
                   </div>
-                  <h1 className="mt-1 text-2xl font-bold tracking-tight sm:text-3xl">
+                  <h1 className="mt-1 break-words text-2xl font-bold tracking-tight sm:text-3xl">
                     {active.name}
                   </h1>
                   {active.notes ? (
@@ -498,11 +498,11 @@ function Dashboard({
                 </div>
 
                 {/* Grand Total Badge */}
-                <div className="rounded-2xl border-2 border-neon/50 bg-background/80 px-4 py-2.5 text-right shadow-inner">
+                <div className="flex shrink-0 items-center justify-between gap-3 rounded-2xl border-2 border-neon/50 bg-background/80 px-3 py-2 text-right shadow-inner sm:block sm:px-4 sm:py-2.5">
                   <p className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground">
                     Total Count
                   </p>
-                  <p className="font-display text-3xl font-extrabold tabular-nums text-neon sm:text-4xl">
+                  <p className="font-display text-2xl font-extrabold tabular-nums text-neon sm:text-4xl">
                     {eventTotal(active)}
                   </p>
                 </div>
@@ -552,9 +552,9 @@ function Dashboard({
 
               {/* Main Counting Area */}
               {activeField && (
-                <div className="my-5 flex flex-col items-center justify-center rounded-3xl border border-dashed border-border/80 bg-background/50 py-6 px-4 text-center">
+                <div className="my-5 flex min-w-0 flex-col items-center justify-center rounded-3xl border border-dashed border-border/80 bg-background/50 px-3 py-5 text-center sm:px-4 sm:py-6">
                   <div className="flex items-center gap-2">
-                    <span className="text-sm font-extrabold uppercase tracking-widest text-neon">
+                    <span className="max-w-full break-words text-xs font-extrabold uppercase tracking-widest text-neon sm:text-sm">
                       Counting: {activeField.name}
                     </span>
                   </div>
@@ -567,7 +567,7 @@ function Dashboard({
                   >
                     <div
                       key={bump}
-                      className="font-display text-8xl font-black tabular-nums text-glow duration-150 animate-in zoom-in-95 sm:text-9xl group-hover:scale-105 transition"
+                      className="max-w-full break-all font-display text-6xl font-black tabular-nums text-glow duration-150 animate-in zoom-in-95 sm:text-8xl lg:text-9xl group-hover:scale-105 transition"
                     >
                       {activeField.count}
                     </div>
@@ -598,11 +598,11 @@ function Dashboard({
                   </div>
 
                   {/* Giant Touch Buttons: Minus & Plus with Heavy Haptics */}
-                  <div className="flex items-center justify-center gap-6 sm:gap-8">
+                  <div className="flex w-full items-center justify-center gap-4 sm:gap-8">
                     <button
                       aria-label={`Subtract ${stepSize} from ${activeField.name}`}
                       onClick={() => changeCount(-stepSize)}
-                      className="flex h-24 w-24 items-center justify-center rounded-3xl border-2 border-neon bg-card text-neon glow transition active:scale-90 hover:brightness-110 sm:h-28 sm:w-28 shadow-lg"
+                      className="flex h-20 w-20 shrink-0 items-center justify-center rounded-3xl border-2 border-neon bg-card text-neon glow transition active:scale-90 hover:brightness-110 sm:h-28 sm:w-28 shadow-lg"
                     >
                       <Minus size={42} strokeWidth={3} />
                     </button>
@@ -610,7 +610,7 @@ function Dashboard({
                     <button
                       aria-label={`Add ${stepSize} to ${activeField.name}`}
                       onClick={() => changeCount(stepSize)}
-                      className="flex h-32 w-32 items-center justify-center rounded-3xl bg-neon text-neon-foreground glow transition active:scale-90 hover:brightness-110 sm:h-36 sm:w-36 shadow-2xl"
+                      className="flex h-28 w-28 shrink-0 items-center justify-center rounded-3xl bg-neon text-neon-foreground glow transition active:scale-90 hover:brightness-110 sm:h-36 sm:w-36 shadow-2xl"
                     >
                       <Plus size={64} strokeWidth={3.5} />
                     </button>
@@ -742,13 +742,13 @@ function Dashboard({
         </section>
 
         {/* Sidebar: Events List & Global Stats */}
-        <aside className="space-y-4">
+        <aside className="min-w-0 space-y-4">
           <div className="grid grid-cols-2 gap-3">
             <StatCard label="All Events" value={events.length} />
             <StatCard label="Total Counted" value={totalAllPeople} />
           </div>
 
-          <div className="rounded-3xl border bg-card/85 p-5 backdrop-blur-md shadow-xl">
+          <div className="min-w-0 rounded-3xl border bg-card/85 p-4 backdrop-blur-md shadow-xl sm:p-5">
             <div className="mb-3.5 flex items-center justify-between">
               <h2 className="text-base font-bold">Saved Events</h2>
               <button

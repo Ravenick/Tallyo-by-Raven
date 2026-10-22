@@ -47,7 +47,7 @@ import { lightTap, strongTap } from "@/lib/haptics";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Tallyo — Premium People Counter" },
+      { title: "Tallyo | Premium People Counter" },
       {
         name: "description",
         content:
@@ -820,7 +820,7 @@ function Dashboard({
 
       {/* Footer */}
       <footer className="relative -mt-8 pb-8 text-center text-xs tracking-wider text-muted-foreground/60">
-        Tallyo by Raven — Simple, Fast & Offline-First
+        Tallyo by Raven | Simple, Fast & Offline-First
       </footer>
 
       {/* Modals */}
@@ -1402,7 +1402,7 @@ function SettingsModal({
       </div>
 
       <p className="mt-5 text-center text-xs text-muted-foreground/60">
-        Tallyo by Raven — 100% Offline & Stored Locally
+        Tallyo by Raven | 100% Offline & Stored Locally
       </p>
     </Modal>
   );

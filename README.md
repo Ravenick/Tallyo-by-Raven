@@ -1,4 +1,4 @@
-# Tallyo — Premium People Counter
+# Tallyo | Premium People Counter
 
 > **Tallyo by Raven**  
 > A sleek, offline-first modern people counter with vibrant glowing neon controls, timestamps, instant exports, and native Android APK support.
